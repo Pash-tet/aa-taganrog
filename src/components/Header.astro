@@ -1,0 +1,153 @@
+---
+import AALogo from "./AALogo.astro"
+import { Icon } from "astro-icon/components"
+import { getPrimaryPhone } from "../utils/contacts"
+
+const primaryPhone = getPrimaryPhone()
+
+const navLinks = [
+  { href: "/", label: "Главная" },
+  { href: "/sobraniya", label: "Собрания" },
+  { href: "/novichku", label: "Новичку" },
+  { href: "/rodstvennikam", label: "Родственникам" },
+  { href: "/novosti", label: "Новости" }
+]
+---
+
+<header
+  class="sticky top-0 z-50 w-full bg-primary text-primary-content shadow-md transition-colors"
+>
+  <div
+    class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8"
+  >
+    <!-- Left: Brand / Logo & Title -->
+    <a
+      href="/"
+      class="group flex items-center gap-3 no-underline focus:outline-none"
+      aria-label="На главную"
+    >
+      <AALogo class="h-12 w-12 shrink-0 sm:h-14 sm:w-14" />
+      <div class="flex flex-col">
+        <div
+          class="flex items-baseline gap-1 text-lg font-bold tracking-tight sm:text-xl lg:text-2xl"
+        >
+          <span class="border-b-2 border-primary-content pb-0.5">Анонимные</span
+          >
+          <span>Алкоголики<sup class="text-xs font-normal">®</sup></span>
+          <span class="font-normal opacity-95">Таганрог</span>
+        </div>
+        <div class="hidden text-xs tracking-wide italic opacity-85 sm:block">
+          Когда будешь готов принять помощь, найди нас...
+        </div>
+      </div>
+    </a>
+
+    <!-- Right: Desktop Navigation + Theme Toggle -->
+    <div class="flex items-center gap-2 lg:gap-4">
+      <nav
+        class="hidden lg:flex lg:items-center lg:gap-1"
+        aria-label="Основная навигация"
+      >
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class="btn btn-ghost text-xs font-semibold tracking-wider text-primary-content uppercase btn-sm hover:bg-black/15"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <!-- Theme Switcher (DaisyUI swap with accessible toggle and persistent storage) -->
+      <label
+        class="btn swap btn-circle swap-rotate border-none btn-ghost text-primary-content btn-sm hover:bg-black/15 focus:outline-none"
+        title="Переключить тему"
+        aria-label="Переключить тему"
+      >
+        <input
+          type="checkbox"
+          id="theme-toggle"
+          class="hidden"
+          aria-label="Включить темную тему"
+        />
+        <!-- Sun icon (shown in light mode) -->
+        <Icon name="lucide:sun" class="h-5 w-5 swap-off" />
+        <!-- Moon icon (shown in dark mode) -->
+        <Icon name="lucide:moon" class="h-5 w-5 swap-on" />
+      </label>
+
+      <!-- Mobile dropdown menu (HTML details/summary - works without JavaScript) -->
+      <details class="dropdown dropdown-end lg:hidden">
+        <summary
+          class="btn btn-ghost text-primary-content btn-sm hover:bg-black/15"
+          aria-label="Открыть меню"
+        >
+          <Icon name="lucide:menu" class="h-6 w-6" />
+        </summary>
+        <ul
+          class="menu dropdown-content z-50 mt-3 w-56 menu-sm rounded-box border border-base-300 bg-base-200 p-2 text-base-content shadow-xl"
+        >
+          {
+            navLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="py-2 text-xs font-semibold tracking-wider uppercase"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </details>
+    </div>
+  </div>
+
+  <!-- Mobile Fixed Contact Bar (Always pinned right under the navbar) -->
+  <div
+    class="border-t border-primary-content/20 bg-primary/95 px-4 py-2 text-xs text-primary-content backdrop-blur-xs lg:hidden"
+  >
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-2">
+      <div class="flex items-center gap-1.5 font-medium">
+        <Icon name="lucide:phone" class="h-3.5 w-3.5 shrink-0 opacity-80" />
+        <span class="text-[11px] opacity-90">Телефон доверия:</span>
+        <a
+          href={`tel:${primaryPhone.tel}`}
+          class="font-bold underline decoration-primary-content/50 hover:opacity-100"
+        >
+          {primaryPhone.number}
+        </a>
+      </div>
+      <a
+        href={`tel:${primaryPhone.tel}`}
+        class="btn inline-flex items-center gap-1 shadow-xs btn-neutral btn-xs"
+      >
+        <Icon name="lucide:phone-call" class="h-3 w-3" />
+        <span>Позвонить</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  const setupThemeToggle = () => {
+    const toggle = document.getElementById("theme-toggle")
+    if (!toggle) return
+
+    const currentTheme =
+      document.documentElement.getAttribute("data-theme") || "aa-light"
+    toggle.checked = currentTheme === "aa-dark"
+
+    toggle.addEventListener("change", (e) => {
+      const nextTheme = e.target.checked ? "aa-dark" : "aa-light"
+      document.documentElement.setAttribute("data-theme", nextTheme)
+      localStorage.setItem("theme", nextTheme)
+    })
+  }
+
+  setupThemeToggle()
+  document.addEventListener("astro:after-swap", setupThemeToggle)
+</script>

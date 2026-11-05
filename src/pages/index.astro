@@ -1,0 +1,184 @@
+---
+import Layout from "../layouts/Layout.astro"
+import { getUpcomingAAMeeting } from "../utils/meetings"
+import { getPrimaryPhone } from "../utils/contacts"
+import { Icon } from "astro-icon/components"
+
+const { meeting, label } = await getUpcomingAAMeeting()
+const primaryPhone = getPrimaryPhone()
+
+const groupName = meeting.group.replace(/^[«\"]+|[»\"]+$/g, "")
+---
+
+<Layout
+  title="Анонимные Алкоголики Таганрога — Сообщество АА"
+  description="Сайт сообщества Анонимных Алкоголиков в г. Таганрог. Помощь при алкоголизме, собрания групп, поддержка новичков и близких."
+>
+  <div class="space-y-6">
+    <!-- Block 1: Hero / Newcomer Priority Card -->
+    <section
+      id="newcomer"
+      class="card border border-base-300 bg-base-200 shadow-xs"
+    >
+      <div class="card-body p-6 sm:p-8">
+        <div
+          class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between"
+        >
+          <div class="space-y-2">
+            <div class="badge text-xs font-semibold badge-primary">
+              Новичку в АА
+            </div>
+            <h1
+              class="text-xl font-bold tracking-tight text-base-content sm:text-2xl lg:text-3xl"
+            >
+              Ищете помощь при алкоголизме в Таганроге?
+            </h1>
+            <p class="max-w-2xl text-sm leading-relaxed text-base-content/80">
+              Если алкоголь создает проблемы в вашей жизни или жизни близких —
+              выход есть. Собрания бесплатны, анонимны и не накладывают никаких
+              обязательств.
+            </p>
+          </div>
+          <div class="flex shrink-0 flex-wrap items-center gap-3">
+            <a
+              href="/novichku"
+              class="btn shadow-xs btn-neutral btn-sm sm:btn-md"
+            >
+              Что нужно знать новичку
+            </a>
+            <a
+              href={`tel:${primaryPhone.tel}`}
+              class="btn inline-flex items-center gap-2 shadow-xs btn-primary btn-sm sm:btn-md"
+            >
+              <Icon name="lucide:phone-call" class="h-4 w-4" />
+              <span>Позвонить</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Block 2: Upcoming Meeting (Full-width block with welcoming call to action) -->
+    <section class="card border border-primary/40 bg-base-200 shadow-xs">
+      <div class="card-body space-y-4 p-6 sm:p-8">
+        <div
+          class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between"
+        >
+          <div class="space-y-1.5">
+            <div class="flex flex-wrap items-center gap-2">
+              <span
+                class="badge text-xs font-semibold tracking-wide badge-primary"
+              >
+                {label} • {meeting.day}
+              </span>
+              {
+                meeting.typeNote && (
+                  <span class="inline-flex items-center gap-1 text-xs font-medium text-primary">
+                    <Icon name="lucide:info" class="h-3.5 w-3.5 shrink-0" />
+                    <span>{meeting.typeNote}</span>
+                  </span>
+                )
+              }
+            </div>
+            <h2
+              class="text-xl font-bold tracking-tight text-base-content sm:text-2xl"
+            >
+              {
+                label === "Сегодня"
+                  ? `Приходите сегодня на группу «${groupName}»`
+                  : `Приходите на группу «${groupName}»`
+              }
+            </h2>
+            <p class="max-w-2xl text-xs text-base-content/80 sm:text-sm">
+              Вам не нужно записываться заранее — просто приходите ко времени.
+              Новичков всегда встречают, наливают чай и всё спокойно объясняют.
+            </p>
+          </div>
+
+          <div class="flex shrink-0 items-center">
+            <a
+              href="/sobraniya"
+              class="btn shadow-xs btn-neutral btn-sm sm:btn-md"
+            >
+              <span>Смотреть остальные дни</span>
+              <Icon name="lucide:arrow-right" class="h-4 w-4" />
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="flex flex-col gap-3 rounded-xl border border-base-300 bg-base-100 p-4 md:flex-row md:items-center md:justify-between"
+        >
+          <div
+            class="flex shrink-0 items-center gap-2.5 text-sm font-semibold text-primary"
+          >
+            <Icon name="lucide:clock" class="h-4 w-4 shrink-0" />
+            <span>Время проведения: {meeting.time}</span>
+          </div>
+
+          <div class="flex items-center gap-2 text-xs sm:text-sm">
+            <Icon name="lucide:map-pin" class="h-4 w-4 shrink-0 text-primary" />
+            <span class="text-base-content/85">
+              {meeting.address}
+              {meeting.office && ` (${meeting.office})`}
+            </span>
+            <a
+              href={`https://yandex.ru/maps/?text=${encodeURIComponent("Таганрог " + meeting.address)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-ghost text-xs whitespace-nowrap text-primary btn-xs hover:bg-primary/10"
+            >
+              <Icon name="lucide:navigation" class="h-3.5 w-3.5" />
+              <span>На карте</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Block 3: Relatives & Al-Anon (Full-width block below meeting) -->
+    <section
+      class="card border border-base-300 bg-base-200 shadow-xs transition hover:border-primary/50"
+    >
+      <div class="card-body space-y-4 p-6 sm:p-8">
+        <div
+          class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between"
+        >
+          <div class="space-y-2">
+            <div
+              class="inline-flex items-center gap-1.5 rounded-full bg-base-300/80 px-3 py-1 text-xs font-semibold text-base-content"
+            >
+              <Icon
+                name="lucide:heart-handshake"
+                class="h-3.5 w-3.5 text-primary"
+              />
+              <span>Для семей и близких</span>
+            </div>
+            <h2
+              class="text-xl font-bold tracking-tight text-base-content sm:text-2xl"
+            >
+              Родственникам и близким
+            </h2>
+            <p
+              class="max-w-2xl text-xs leading-relaxed text-base-content/80 sm:text-sm"
+            >
+              Алкоголизм — семейная болезнь. Если ваш близкий человек страдает
+              от алкоголизма, вам тоже необходима поддержка и понимание того,
+              как правильно вести себя и не разрушать собственную жизнь.
+            </p>
+          </div>
+
+          <div class="flex shrink-0 items-center">
+            <a
+              href="/rodstvennikam"
+              class="btn shadow-xs btn-neutral btn-sm sm:btn-md"
+            >
+              <span>Подробнее о группах Ал-Анон</span>
+              <Icon name="lucide:arrow-right" class="h-4 w-4" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>

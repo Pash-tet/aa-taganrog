@@ -1,0 +1,119 @@
+---
+import "../styles/global.css"
+import Header from "../components/Header.astro"
+import Sidebar from "../components/Sidebar.astro"
+import Footer from "../components/Footer.astro"
+import logo from "../assets/logo.png"
+
+interface Props {
+  title?: string
+  description?: string
+  hideSidebar?: boolean
+  image?: string
+  publishedTime?: string
+}
+
+const {
+  title = "Анонимные Алкоголики Таганрога",
+  description = "Сайт сообщества Анонимных Алкоголиков г. Таганрог. Расписание собраний, помощь новичкам, контакты.",
+  hideSidebar = false,
+  image = logo.src,
+  publishedTime
+} = Astro.props
+const canonical = new URL(
+  `${Astro.url.pathname.replace(/\/+$/, "")}/`,
+  Astro.site
+)
+const imageUrl = new URL(image, Astro.site)
+const siteName = "Анонимные Алкоголики Таганрога"
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:type" content={publishedTime ? "article" : "website"} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+    <meta
+      property="og:image:alt"
+      content={image === logo.src ? siteName : title}
+    />
+    {
+      publishedTime && (
+        <meta property="article:published_time" content={publishedTime} />
+      )
+    }
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    {
+      Astro.url.pathname === "/" && (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: siteName,
+            alternateName: "АА Таганрог",
+            url: Astro.site?.href,
+            inLanguage: "ru"
+          }).replaceAll("<", "\\u003c")}
+        />
+      )
+    }
+    <title>{title}</title>
+    <script is:inline>
+      const storedTheme =
+        typeof localStorage !== "undefined"
+          ? localStorage.getItem("theme")
+          : null
+      const systemDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches
+      const initialTheme = storedTheme || (systemDark ? "aa-dark" : "aa-light")
+      document.documentElement.setAttribute("data-theme", initialTheme)
+    </script>
+  </head>
+  <body
+    class="flex min-h-screen flex-col bg-base-100 text-base-content antialiased"
+  >
+    <!-- Fixed/Sticky Header at top -->
+    <Header />
+
+    <!-- Main Container: Content + Sticky Sidebar -->
+    <div
+      class="mx-auto flex w-full max-w-7xl flex-1 flex-col px-4 py-6 sm:px-6 lg:flex-row lg:gap-8 lg:px-8"
+    >
+      <!-- Main Content Area -->
+      <main class="min-w-0 flex-1">
+        <slot />
+      </main>
+
+      <!-- Right Sidebar (Fixed/Sticky on Desktop) -->
+      {
+        !hideSidebar && (
+          <div class="mt-8 shrink-0 lg:mt-0 lg:w-72 xl:w-80">
+            <div class="lg:sticky lg:top-24">
+              <Sidebar />
+            </div>
+          </div>
+        )
+      }
+    </div>
+
+    <!-- Footer -->
+    <Footer />
+  </body>
+</html>

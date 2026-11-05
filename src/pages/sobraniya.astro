@@ -1,0 +1,124 @@
+---
+import Layout from "../layouts/Layout.astro"
+import { getSortedAAMeetings } from "../utils/meetings"
+import { Icon } from "astro-icon/components"
+
+const meetings = await getSortedAAMeetings()
+---
+
+<Layout
+  title="Расписание собраний АА в Таганроге — адреса групп"
+  description="Расписание очных собраний групп Анонимных Алкоголиков в Таганроге на всю неделю: «Свобода», «Надежда», «Наш путь»."
+>
+  <div class="space-y-8">
+    <nav class="text-xs text-base-content/60" aria-label="Хлебные крошки">
+      <ol class="flex items-center gap-2">
+        <li><a href="/" class="link link-hover">Главная</a></li>
+        <li>/</li>
+        <li class="font-medium text-base-content">Собрания</li>
+      </ol>
+    </nav>
+
+    <header class="space-y-3 border-b border-base-300 pb-4">
+      <div
+        class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary"
+      >
+        <Icon name="lucide:calendar-clock" class="h-4 w-4" />
+        <span>Ежедневные встречи</span>
+      </div>
+      <h1
+        class="text-2xl font-bold tracking-tight text-base-content sm:text-3xl lg:text-4xl"
+      >
+        Расписание собраний АА в Таганроге
+      </h1>
+      <p class="max-w-2xl text-xs text-base-content/70 sm:text-sm">
+        Вход на собрания свободный и бесплатный. Вам не нужно регистрироваться
+        или называть фамилию — просто приходите.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      {
+        meetings.map((entry) => {
+          const item = entry.data
+          return (
+            <div class="card border border-base-300 bg-base-200 shadow-xs transition hover:border-primary/50">
+              <div class="card-body space-y-3 p-5">
+                <div class="flex items-center justify-between border-b border-base-300 pb-2">
+                  <span class="badge badge-sm font-bold badge-primary">
+                    {item.dayShort}
+                  </span>
+                  <span class="text-lg font-bold text-base-content">
+                    {item.day}
+                  </span>
+                </div>
+
+                <div>
+                  <div class="text-base font-semibold text-primary">
+                    Группа «{item.group}»
+                  </div>
+                  <div class="text-sm font-medium text-base-content/90">
+                    Время: {item.time}
+                  </div>
+                </div>
+
+                <div class="space-y-1.5 pt-0.5">
+                  <div>
+                    <a
+                      href={`https://yandex.ru/maps/?text=${encodeURIComponent("Таганрог " + item.address)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex link items-center gap-1.5 text-xs font-medium text-primary link-hover"
+                      title="Показать на Яндекс.Картах"
+                    >
+                      <Icon
+                        name="lucide:map-pin"
+                        class="h-3.5 w-3.5 shrink-0"
+                      />
+                      <span>
+                        {item.address}
+                        {item.office && <span>, {item.office}</span>}
+                      </span>
+                      <Icon
+                        name="lucide:arrow-up-right"
+                        class="h-3 w-3 opacity-60"
+                      />
+                    </a>
+                  </div>
+
+                  {item.typeNote && (
+                    <div class="flex items-center gap-1.5 pt-1 text-xs font-medium text-primary">
+                      <Icon name="lucide:info" class="h-3.5 w-3.5 shrink-0" />
+                      <span>{item.typeNote}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )
+        })
+      }
+    </div>
+
+    <!-- Explanatory note -->
+    <div
+      class="card border border-base-300/80 bg-base-200/50 p-5 text-xs text-base-content/80 sm:text-sm"
+    >
+      <div class="space-y-2">
+        <h3 class="font-bold text-base-content">
+          Что означает «Закрытое» или «Открытое» собрание?
+        </h3>
+        <p>
+          <strong class="text-base-content">Закрытые собрания</strong> — предназначены
+          только для тех, кто сам имеет проблемы с алкоголем и имеет желание бросить
+          пить (или исследует такую возможность).
+        </p>
+        <p>
+          <strong class="text-base-content">Открытые собрания</strong> — могут посещать
+          все желающие: родственники, друзья, студенты, врачи или журналисты, интересующиеся
+          деятельностью АА.
+        </p>
+      </div>
+    </div>
+  </div>
+</Layout>

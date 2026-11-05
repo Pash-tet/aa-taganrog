@@ -1,0 +1,39 @@
+---
+interface Props {
+  class?: string
+  size?: number
+}
+
+const { class: className = "h-14 w-14", size = 56 } = Astro.props
+---
+
+<svg
+  viewBox="0 0 100 100"
+  width={size}
+  height={size}
+  class={className}
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-label="Эмблема Анонимных Алкоголиков"
+>
+  <!-- Outer circle border -->
+  <circle
+    cx="50"
+    cy="50"
+    r="47"
+    fill="#000000"
+    stroke="#FFFFFF"
+    stroke-width="3"></circle>
+  <!-- Double A typography stylized -->
+  <g
+    fill="#FFFFFF"
+    font-family="Arial, Helvetica, sans-serif"
+    font-weight="900"
+    font-style="italic"
+    font-size="52"
+    text-anchor="middle"
+  >
+    <text x="36" y="68" letter-spacing="-3">A</text>
+    <text x="64" y="68" letter-spacing="-3">A</text>
+  </g>
+</svg>

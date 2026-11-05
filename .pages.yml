@@ -1,0 +1,153 @@
+media:
+  input: public/images
+  output: /images
+
+content:
+  - name: contacts
+    label: Контакты (телефоны и email)
+    type: file
+    path: src/content/contacts.json
+    fields:
+      - name: email
+        label: Email сообщества
+        type: string
+        required: true
+      - name: phones
+        label: Телефоны
+        type: list
+        fields:
+          - name: number
+            label: Номер для отображения (напр. 8 (952) 580 54 00)
+            type: string
+            required: true
+          - name: tel
+            label: Ссылка tel (напр. +79525805400)
+            type: string
+            required: true
+          - name: primary
+            label: Основной номер (горячая линия)
+            type: boolean
+          - name: note
+            label: Примечание
+            type: string
+
+  - name: news
+    label: Новости
+    type: collection
+    path: src/content/news
+    fields:
+      - name: title
+        label: Заголовок
+        type: string
+        required: true
+      - name: description
+        label: Краткое описание
+        type: string
+      - name: pubDate
+        label: Дата публикации
+        type: date
+      - name: author
+        label: Автор / Комитет
+        type: string
+      - name: image
+        label: Изображение
+        type: image
+      - name: body
+        label: Текст новости (Rich Text)
+        type: rich-text
+
+  - name: aa-meetings
+    label: Расписание АА
+    type: file
+    path: src/content/aa-meetings.json
+    list: true
+    fields:
+      - name: id
+        label: Уникальный ID
+        type: string
+      - name: day
+        label: День недели
+        type: select
+        options:
+          - Понедельник
+          - Вторник
+          - Среда
+          - Четверг
+          - Пятница
+          - Суббота
+          - Воскресенье
+      - name: dayShort
+        label: Кратко (Пн, Вт...)
+        type: string
+      - name: dayIndex
+        label: Порядковый номер дня (1-7)
+        type: number
+      - name: group
+        label: Группа
+        type: string
+      - name: time
+        label: Время проведения
+        type: string
+      - name: timeStart
+        label: Время начала (HH:MM)
+        type: string
+      - name: timeEnd
+        label: Время окончания (HH:MM)
+        type: string
+      - name: address
+        label: Адрес
+        type: string
+      - name: office
+        label: Офис / помещение
+        type: string
+      - name: type
+        label: Тип собрания
+        type: select
+        options:
+          - Закрытое
+          - Открытое
+      - name: typeNote
+        label: Примечание к типу
+        type: string
+      - name: lastVerified
+        label: Дата проверки
+        type: date
+
+  - name: alanon-meetings
+    label: Расписание Ал-Анон
+    type: file
+    path: src/content/alanon-meetings.json
+    list: true
+    fields:
+      - name: id
+        label: Уникальный ID
+        type: string
+      - name: day
+        label: День недели
+        type: select
+        options:
+          - Понедельник
+          - Вторник
+          - Среда
+          - Четверг
+          - Пятница
+          - Суббота
+          - Воскресенье
+      - name: dayShort
+        label: Кратко (Чт, Вс...)
+        type: string
+      - name: dayIndex
+        label: Порядковый номер дня (1-7)
+        type: number
+      - name: group
+        label: Группа
+        type: string
+      - name: time
+        label: Время проведения
+        type: string
+      - name: address
+        label: Адрес
+        type: string
+      - name: office
+        label: Офис / помещение
+        type: string

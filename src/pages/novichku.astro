@@ -1,0 +1,266 @@
+---
+import Layout from "../layouts/Layout.astro"
+import { Icon } from "astro-icon/components"
+import { getPrimaryPhone } from "../utils/contacts"
+
+const primaryPhone = getPrimaryPhone()
+
+const whatAANotDo = [
+  "Не агитирует и не убеждает кого-либо вступать в АА — решение всегда добровольно.",
+  "Не ведет списков членов и историй болезней — анонимность гарантируется.",
+  "Не контролирует своих членов и не следит за ними.",
+  "Не ставит медицинских диагнозов и не назначает медикаментозное лечение.",
+  "Не предоставляет услуг вытрезвителя, детоксикации или госпитализации (мы рекомендуем обращаться к профильным врачам).",
+  "Не совершает религиозных обрядов и не принадлежит ни к одной конфессии или секте.",
+  "Не занимается антиалкогольной пропагандой и не требует введения «сухого закона».",
+  "Не обеспечивает жильем, питанием, одеждой или деньгами.",
+  "Не берет вступительных или членских взносов — мы существуем только на добровольные пожертвования наших членов.",
+  "Не выдает справок и характеристик для судов, работодателей или социальных служб."
+]
+
+const myths = [
+  {
+    myth: "«Просто не пей и ходи на группы!»",
+    quote:
+      "«Вот предпринятые нами шаги, которые предлагаются как программа выздоровления…»",
+    bookNote:
+      "Программа — это конкретные 12 Шагов и внутренние действия, а не просто физическое присутствие на встречах."
+  },
+  {
+    myth: "«Сначала надо бросить пить, а потом идти в АА.»",
+    quote:
+      "«Единственное условие для того, чтобы стать членом АА — это желание бросить пить.»",
+    bookNote:
+      "Вы можете прийти, даже если выпивали сегодня. Главное — искреннее желание освободиться от зависимости."
+  },
+  {
+    myth: "«Я буду бороться с тягой изо всех сил каждый день.»",
+    quote:
+      "«Мы перестали бороться с чем-либо или с кем-либо, даже с алкоголем. Ибо к этому времени к нам уже вернулось здравомыслие. Алкоголь редко будет интересовать нас. Мы больше не даем зароков, проблема ушла сама. Она больше не существует для нас. В нас нет самоуверенности, но нет и страха.»",
+    bookNote:
+      "При выполнении программы наступает подлинное душевное освобождение от одержимости выпивкой."
+  },
+  {
+    myth: "«Мы не нуждаемся во врачах. Всё, что нужно, написано в книге.»",
+    quote:
+      "«Бог дал нам множество хороших докторов разных специальностей, психиатров, умелых практиков. Без колебаний обращайтесь к этим людям, если у вас возникают проблемы со здоровьем... Их заслуги в лечении новичков часто неоценимы.»",
+    bookNote:
+      "АА не заменяет медицинскую помощь и высоко ценит сотрудничество с врачами и психологами."
+  },
+  {
+    myth: "«Анонимные Алкоголики — это единственный способ быть трезвым.»",
+    quote:
+      "«Если кому-то кажется, что он может добиться результатов каким-либо другим путем или предпочитает иной способ духовного исцеления, пусть он следует голосу своего сознания. У нас нет монополии на духовное общение с Богом.»",
+    bookNote:
+      "АА уважает любой путь, который действительно помогает человеку обрести свободу от зависимости."
+  }
+]
+---
+
+<Layout
+  title="Новичку в АА — Анонимные Алкоголики Таганрога"
+  description="Информация для тех, кто впервые знакомится с сообществом Анонимных Алкоголиков в Таганроге. Что такое АА, чего мы не делаем, мифы и реальность."
+>
+  <article class="space-y-8">
+    <nav class="text-xs text-base-content/60" aria-label="Хлебные крошки">
+      <ol class="flex items-center gap-2">
+        <li><a href="/" class="link link-hover">Главная</a></li>
+        <li>/</li>
+        <li class="font-medium text-base-content">Новичку</li>
+      </ol>
+    </nav>
+
+    <header class="space-y-4">
+      <div
+        class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary"
+      >
+        <Icon name="lucide:heart-handshake" class="h-4 w-4" />
+        <span>Главный человек на группе — это новичок</span>
+      </div>
+      <h1
+        class="text-2xl font-bold tracking-tight text-base-content sm:text-3xl lg:text-4xl"
+      >
+        Добро пожаловать в Анонимные Алкоголики
+      </h1>
+      <blockquote
+        class="border-l-4 border-primary bg-base-200/60 p-4 text-sm font-medium text-base-content/90 italic sm:text-base"
+      >
+        «Каждый день где-нибудь на земле начинается чье-то выздоровление, когда
+        один алкоголик ведет разговор с другим алкоголиком, делясь опытом, силой
+        и надеждой…»
+      </blockquote>
+    </header>
+
+    <section class="card border border-base-300 bg-base-200 shadow-xs">
+      <div class="card-body space-y-4 p-6 sm:p-8">
+        <h2 class="text-lg font-bold text-base-content sm:text-xl">
+          Если вы здесь впервые
+        </h2>
+        <p class="text-sm leading-relaxed text-base-content/85 sm:text-base">
+          Мы понимаем, как трудно и страшно сделать первый шаг, переступить
+          порог группы или даже просто набрать номер телефона. Большинство из
+          нас пришли в АА в состоянии полного отчаяния, потеряв веру в себя,
+          уважение близких, работу и здоровье.
+        </p>
+
+        <p class="text-sm leading-relaxed text-base-content/85 sm:text-base">
+          Мы очень долго не хотели признавать, что никогда не сможем пить «как
+          все». Но от других членов АА мы узнали главное: <strong
+            class="text-base-content"
+            >алкоголизм — это не распущенность и не порок воли, а тяжелая
+            прогрессирующая болезнь</strong
+          >. Вы не виноваты в том, что заболели, но вы можете найти выход, как
+          нашли его миллионы людей по всему миру.
+        </p>
+
+        <div
+          class="space-y-2 rounded-lg border border-base-300/70 bg-base-100 p-4 text-xs sm:text-sm"
+        >
+          <div class="flex items-center gap-2 font-bold text-base-content">
+            <Icon name="lucide:info" class="h-4 w-4 shrink-0 text-primary" />
+            <span>О понятии «Высшая Сила» и слове «Бог»</span>
+          </div>
+          <p class="text-base-content/80">
+            Пожалуйста, пусть вас не смущают эти слова. АА — <strong
+              class="text-base-content">не религиозная секта</strong
+            >. Среди нас есть верующие самых разных конфессий, агностики и
+            атеисты. Каждый понимает под Высшей Силой то, что выбирает сам: для
+            многих в начале пути такой силой становится просто сама группа
+            трезвых людей, способная дать поддержку, когда собственных сил
+            больше нет.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card bg-primary text-primary-content shadow-md">
+      <div class="card-body space-y-4 p-6 sm:p-8">
+        <div
+          class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+        >
+          <div class="space-y-1">
+            <h2 class="text-xl font-bold tracking-tight">
+              Если у вас проблема с алкоголем — позвоните нам
+            </h2>
+            <p class="max-w-xl text-xs text-primary-content/90 sm:text-sm">
+              С вами поговорит такой же человек, который сам прошел через кошмар
+              запоев и смог обрести трезвую, радостную жизнь. Разговор полностью
+              конфиденциален.
+            </p>
+          </div>
+          <div class="flex shrink-0 flex-wrap gap-2">
+            <a
+              href={`tel:${primaryPhone.tel}`}
+              class="btn inline-flex items-center gap-2 shadow-xs btn-neutral btn-sm sm:btn-md"
+            >
+              <Icon name="lucide:phone-call" class="h-4 w-4" />
+              <span>{primaryPhone.number}</span>
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="flex flex-wrap items-center gap-4 border-t border-primary-content/20 pt-4 text-xs"
+        >
+          <a
+            href="https://vk.com/aatag"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex link items-center gap-1.5 font-medium link-hover opacity-90 hover:opacity-100"
+          >
+            <Icon name="mdi:vk" class="h-4 w-4" />
+            <span>Мы ВКонтакте: vk.com/aatag</span>
+          </a>
+          <span class="opacity-60">•</span>
+          <span class="opacity-90"
+            >Звонок бесплатный и ни к чему не обязывает</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="card border border-base-300 bg-base-200 shadow-xs">
+      <div class="card-body space-y-4 p-6 sm:p-8">
+        <div class="border-b border-base-300 pb-3">
+          <h2 class="text-lg font-bold text-base-content sm:text-xl">
+            Чего Анонимные Алкоголики НЕ делают
+          </h2>
+          <p class="text-xs text-base-content/70 sm:text-sm">
+            Чтобы развеять частые опасения новичков, мы открыто обозначаем наши
+            границы:
+          </p>
+        </div>
+
+        <ul class="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+          {
+            whatAANotDo.map((item) => (
+              <li class="flex items-start gap-2 text-xs leading-relaxed text-base-content/85 sm:text-sm">
+                <Icon
+                  name="lucide:x-circle"
+                  class="mt-0.5 h-4 w-4 shrink-0 text-error/80"
+                />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class="card border border-base-300 bg-base-200 shadow-xs">
+      <div class="card-body space-y-6 p-6 sm:p-8">
+        <div class="border-b border-base-300 pb-3">
+          <h2 class="text-lg font-bold text-base-content sm:text-xl">
+            Заблуждения о Программе vs Большая Книга АА
+          </h2>
+          <p class="text-xs text-base-content/70 sm:text-sm">
+            Часто вокруг АА возникают мифы. Вот как отвечает на них базовый
+            текст нашей книги:
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          {
+            myths.map((item, idx) => (
+              <div class="space-y-2 rounded-lg border border-base-300 bg-base-100 p-4">
+                <div class="flex items-start gap-2">
+                  <span class="mt-0.5 badge shrink-0 badge-sm font-bold badge-neutral">
+                    #{idx + 1}
+                  </span>
+                  <div class="space-y-1">
+                    <p class="text-sm font-bold text-error">{item.myth}</p>
+                    <p class="text-xs text-base-content/80 italic sm:text-sm">
+                      {item.quote}
+                    </p>
+                    <p class="text-xs font-medium text-primary">
+                      ✓ {item.bookNote}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <div
+      class="card border border-primary/30 bg-primary/5 p-6 text-center sm:p-8"
+    >
+      <div class="mx-auto max-w-xl space-y-3">
+        <h3 class="text-base font-bold text-base-content sm:text-lg">
+          Готовы прийти на собрание?
+        </h3>
+        <p class="text-xs leading-relaxed text-base-content/80 sm:text-sm">
+          Собрания проходят каждый день недели. Вам не нужно записываться
+          заранее — просто приходите по указанному адресу ко времени начала.
+        </p>
+        <div class="pt-2">
+          <a href="/sobraniya" class="btn btn-primary btn-sm sm:btn-md">
+            Посмотреть полное расписание групп
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+</Layout>

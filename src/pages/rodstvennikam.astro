@@ -1,0 +1,275 @@
+---
+import Layout from "../layouts/Layout.astro"
+import { getSortedAlanonMeetings } from "../utils/meetings"
+import { Icon } from "astro-icon/components"
+
+const alanonMeetings = await getSortedAlanonMeetings()
+
+const recommendations = [
+  {
+    title: "1. Изучайте факты о болезни",
+    text: "Узнайте как можно больше об алкоголизме как о болезни, а не о пороке воли. Не начинайте с попыток изменить алкоголика насильно."
+  },
+  {
+    title: "2. Посещайте группы Ал-Анон",
+    text: "Посещайте содружества для родственников (Ал-Анон) или открытые собрания Анонимных Алкоголиков, чтобы услышать личный опыт выздоровления."
+  },
+  {
+    title: "3. Найдите понимание и поддержку",
+    text: "Общайтесь с людьми, которые пережили подобное и нашли выход из тупика созависимости."
+  },
+  {
+    title: "4. Будьте доброжелательны и честны",
+    text: "Говорите спокойно и откровенно, без упреков и жалости к себе."
+  },
+  {
+    title: "5. Поощряйте любую готовность лечиться",
+    text: "Если алкоголик проявляет интерес к лечению или посещению АА, поддержите это стремление без давления."
+  },
+  {
+    title: "6. Позвольте столкнуться с последствиями",
+    text: "Не спасайте алкоголика от естественных последствий его запоев: проблем на работе, долгов, испорченных отношений."
+  }
+]
+
+const warnings = [
+  {
+    title: "1. Не читайте нотаций и не ругайте",
+    text: "Упреки, обвинения и морализаторство только усиливают у алкоголика чувство вины, которое он снова заглушает рюмкой."
+  },
+  {
+    title: "2. Не теряйте самообладания",
+    text: "Гнев разрушает вас самих и делает конструктивный разговор невозможным."
+  },
+  {
+    title: "3. Не верьте обещаниям «завязать навсегда»",
+    text: "Алкоголик искренне верит своим обещаниям в момент похмелья, но без программы действий болезнь неизбежно возьмет верх."
+  },
+  {
+    title: "4. Не выдвигайте пустых угроз",
+    text: "Если вы говорите «я уйду» или «не дам денег», вы должны быть готовы выполнить это, иначе угрозы теряют силу."
+  },
+  {
+    title: "5. Не прячьте и не выливайте спиртное",
+    text: "Это бесполезно: зависимый найдет новую дозу и станет более скрытным и раздражительным."
+  },
+  {
+    title: "6. Не отбирайте у алкоголика ответственность",
+    text: "Не звоните за него на работу, не отдавайте его долги. Пока вы берете последствия на себя, у него нет мотивации остановиться."
+  }
+]
+---
+
+<Layout
+  title="Родственникам и близким — Анонимные Алкоголики Таганрога"
+  description="Информация и помощь для семей, жен, мужей и детей алкоголиков. Группы Ал-Анон в Таганроге, памятка родственникам."
+>
+  <article class="space-y-8">
+    <nav class="text-xs text-base-content/60" aria-label="Хлебные крошки">
+      <ol class="flex items-center gap-2">
+        <li><a href="/" class="link link-hover">Главная</a></li>
+        <li>/</li>
+        <li class="font-medium text-base-content">Родственникам</li>
+      </ol>
+    </nav>
+
+    <header class="space-y-4">
+      <div
+        class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary"
+      >
+        <Icon name="lucide:heart-handshake" class="h-4 w-4" />
+        <span>Помощь семьям и близким</span>
+      </div>
+      <h1
+        class="text-2xl font-bold tracking-tight text-base-content sm:text-3xl lg:text-4xl"
+      >
+        Если ваш близкий человек страдает от алкоголизма
+      </h1>
+      <blockquote
+        class="border-l-4 border-primary bg-base-200/60 p-4 text-sm font-medium text-base-content/90 italic sm:text-base"
+      >
+        «Любая семья, жена и дети, которые вынуждены жить с алкоголиком в
+        течение некоторого времени, постепенно сами становятся больными людьми с
+        искалеченной психикой. Это неизбежный процесс…»
+        <footer
+          class="mt-2 text-xs font-normal text-base-content/70 not-italic"
+        >
+          — Билл У., сооснователь Анонимных Алкоголиков
+        </footer>
+      </blockquote>
+    </header>
+
+    <!-- Family disease block -->
+    <section class="card border border-base-300 bg-base-200 shadow-xs">
+      <div
+        class="card-body space-y-4 p-6 text-sm leading-relaxed text-base-content/85 sm:p-8 sm:text-base"
+      >
+        <h2 class="text-lg font-bold text-base-content">
+          Алкоголизм — это семейная болезнь
+        </h2>
+        <p>
+          Не понимая природы зависимости, родственники часто пытаются взять всё
+          под тотальный контроль: выливают алкоголь, умоляют, контролируют
+          финансы, изолируют себя от друзей или покрывают ошибки пьющего. Но
+          практика показывает: <strong class="text-base-content"
+            >от этого положение только ухудшается</strong
+          >, а жизнь близких превращается в постоянный кошмар.
+        </p>
+        <p>
+          Алкоголизм — болезнь не только тела пьющего человека, но и болезнь
+          взаимоотношений. Родственники, пытаясь спасать алкоголика, сами
+          истощаются эмоционально и физически. Поэтому путь к выздоровлению в
+          семье всегда начинается с <strong class="text-primary"
+            >заботы о себе и изменения собственного поведения</strong
+          >.
+        </p>
+      </div>
+    </section>
+
+    <!-- Do's: Recommendations -->
+    <section class="space-y-4">
+      <div class="border-b border-base-300 pb-2">
+        <h2 class="text-xl font-bold tracking-tight text-primary sm:text-2xl">
+          С чего начать помощь близкому?
+        </h2>
+        <p class="mt-1 text-xs text-base-content/70">
+          Базовые принципы здорового отношения к зависимому члену семьи:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {
+          recommendations.map((item, index) => (
+            <div class="card border border-base-300 bg-base-200 shadow-xs">
+              <div class="card-body space-y-2 p-5">
+                <div class="flex items-center gap-2">
+                  <span class="badge badge-sm font-bold badge-primary">
+                    #{index + 1}
+                  </span>
+                  <h3 class="font-bold text-base-content">{item.title}</h3>
+                </div>
+                <p class="text-xs leading-relaxed text-base-content/80 sm:text-sm">
+                  {item.text}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Don'ts: Mistakes -->
+    <section class="space-y-4">
+      <div class="border-b border-base-300 pb-2">
+        <h2 class="text-xl font-bold tracking-tight text-error sm:text-2xl">
+          Чего делать НЕ следует
+        </h2>
+        <p class="mt-1 text-xs text-base-content/70">
+          Типичные ошибки, которые усугубляют зависимость:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {
+          warnings.map((item, index) => (
+            <div class="card border border-base-300 bg-base-200 shadow-xs">
+              <div class="card-body space-y-2 p-5">
+                <div class="flex items-center gap-2">
+                  <span class="badge badge-sm font-bold text-white badge-error">
+                    #{index + 1}
+                  </span>
+                  <h3 class="font-bold text-base-content">{item.title}</h3>
+                </div>
+                <p class="text-xs leading-relaxed text-base-content/80 sm:text-sm">
+                  {item.text}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Al-Anon Meetings in Taganrog -->
+    <section class="space-y-4">
+      <div class="border-b border-base-300 pb-2">
+        <div class="mb-1 badge text-xs font-semibold badge-info">
+          Семейные группы
+        </div>
+        <h2
+          class="text-xl font-bold tracking-tight text-base-content sm:text-2xl"
+        >
+          Группы Ал-Анон в Таганроге
+        </h2>
+        <p class="mt-1 text-xs text-base-content/70 sm:text-sm">
+          Ал-Анон — это содружество родственников и друзей алкоголиков. Здесь
+          делятся опытом, как обрести душевный покой независимо от того,
+          продолжает близкий пить или нет.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {
+          alanonMeetings.map((entry) => {
+            const item = entry.data
+            return (
+              <div class="card border border-base-300 bg-base-200 shadow-xs">
+                <div class="card-body space-y-2.5 p-5">
+                  <div class="flex items-center justify-between border-b border-base-300 pb-2">
+                    <span class="text-lg font-bold text-base-content">
+                      {item.day}
+                    </span>
+                    <span class="badge badge-sm font-medium badge-info">
+                      Ал-Анон
+                    </span>
+                  </div>
+                  <div class="text-sm font-semibold text-primary">
+                    Группа «{item.group}»
+                  </div>
+                  <div class="text-sm font-medium text-base-content/90">
+                    Время: {item.time}
+                  </div>
+                  <div class="pt-1">
+                    <a
+                      href={`https://yandex.ru/maps/?text=${encodeURIComponent("Таганрог " + item.address)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex link items-center gap-1.5 text-xs font-medium text-primary link-hover"
+                    >
+                      <Icon
+                        name="lucide:map-pin"
+                        class="h-3.5 w-3.5 shrink-0"
+                      />
+                      <span>
+                        {item.address}
+                        {item.office && <span>, {item.office}</span>}
+                      </span>
+                      <Icon
+                        name="lucide:arrow-up-right"
+                        class="h-3 w-3 opacity-60"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )
+          })
+        }
+      </div>
+
+      <div
+        class="rounded-lg border border-base-300 bg-base-200/50 p-4 text-center"
+      >
+        <a
+          href="https://al-anon-61region.ru/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex link items-center gap-1.5 text-xs font-bold text-primary link-hover"
+        >
+          <span>Сайт Ал-Анон Ростовской области: al-anon-61region.ru</span>
+          <Icon name="lucide:arrow-up-right" class="h-3.5 w-3.5" />
+        </a>
+      </div>
+    </section>
+  </article>
+</Layout>

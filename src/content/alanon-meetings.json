@@ -1,0 +1,26 @@
+[
+  {
+    "id": "thu-vozrozhdenie-1830",
+    "day": "Четверг",
+    "dayShort": "Чт",
+    "dayIndex": 4,
+    "group": "Возрождение",
+    "time": "18:30 – 19:30",
+    "timeStart": "18:30",
+    "timeEnd": "19:30",
+    "address": "пер. Трудовых Резервов, 10",
+    "office": "офис 316"
+  },
+  {
+    "id": "sun-vozrozhdenie-1500",
+    "day": "Воскресенье",
+    "dayShort": "Вс",
+    "dayIndex": 7,
+    "group": "Возрождение",
+    "time": "15:00 – 16:00",
+    "timeStart": "15:00",
+    "timeEnd": "16:00",
+    "address": "пер. Трудовых Резервов, 10",
+    "office": "офис 316"
+  }
+]

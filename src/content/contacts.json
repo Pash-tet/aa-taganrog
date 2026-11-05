@@ -1,0 +1,21 @@
+{
+  "email": "aataganrog@yandex.ru",
+  "phones": [
+    {
+      "number": "8 (952) 580 54 00",
+      "tel": "+79525805400",
+      "primary": true,
+      "note": "Основной телефон доверия"
+    },
+    {
+      "number": "8 (903) 431 66 36",
+      "tel": "+79034316636",
+      "primary": false
+    },
+    {
+      "number": "8 (995) 615 06 46",
+      "tel": "+79956150646",
+      "primary": false
+    }
+  ]
+}

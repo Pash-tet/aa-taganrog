@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../../utils/paths"
 import Layout from "../../layouts/Layout.astro"
 import { getCollection } from "astro:content"
 import { Icon } from "astro-icon/components"
@@ -24,7 +25,7 @@ function formatDate(date: Date): string {
   <div class="space-y-8">
     <nav class="text-xs text-base-content/60" aria-label="Хлебные крошки">
       <ol class="flex items-center gap-2">
-        <li><a href="/" class="link link-hover">Главная</a></li>
+        <li><a href={withBase("/")} class="link link-hover">Главная</a></li>
         <li>/</li>
         <li class="font-medium text-base-content">Новости</li>
       </ol>
@@ -70,7 +71,7 @@ function formatDate(date: Date): string {
                 </div>
 
                 <h2 class="text-lg font-bold text-base-content transition hover:text-primary sm:text-xl">
-                  <a href={`/novosti/${post.id}`} class="link link-hover">
+                  <a href={withBase(`/novosti/${post.id}`)} class="link link-hover">
                     {post.data.title}
                   </a>
                 </h2>
@@ -81,7 +82,7 @@ function formatDate(date: Date): string {
 
                 <div class="pt-2">
                   <a
-                    href={`/novosti/${post.id}`}
+                    href={withBase(`/novosti/${post.id}`)}
                     class="btn -ml-3 inline-flex items-center gap-1.5 btn-ghost text-xs font-semibold text-primary btn-sm hover:bg-primary/10"
                   >
                     <span>Читать полностью</span>

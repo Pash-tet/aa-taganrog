@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../utils/paths"
 import Layout from "../layouts/Layout.astro"
 import { Icon } from "astro-icon/components"
 import { getPrimaryPhone } from "../utils/contacts"
@@ -64,7 +65,7 @@ const myths = [
   <article class="space-y-8">
     <nav class="text-xs text-base-content/60" aria-label="Хлебные крошки">
       <ol class="flex items-center gap-2">
-        <li><a href="/" class="link link-hover">Главная</a></li>
+        <li><a href={withBase("/")} class="link link-hover">Главная</a></li>
         <li>/</li>
         <li class="font-medium text-base-content">Новичку</li>
       </ol>
@@ -256,7 +257,7 @@ const myths = [
           заранее — просто приходите по указанному адресу ко времени начала.
         </p>
         <div class="pt-2">
-          <a href="/sobraniya" class="btn btn-primary btn-sm sm:btn-md">
+          <a href={withBase("/sobraniya")} class="btn btn-primary btn-sm sm:btn-md">
             Посмотреть полное расписание групп
           </a>
         </div>

@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../utils/paths"
 import Layout from "../layouts/Layout.astro"
 import { getUpcomingAAMeeting } from "../utils/meetings"
 import { getPrimaryPhone } from "../utils/contacts"
@@ -41,7 +42,7 @@ const groupName = meeting.group.replace(/^[«\"]+|[»\"]+$/g, "")
           </div>
           <div class="flex shrink-0 flex-wrap items-center gap-3">
             <a
-              href="/novichku"
+              href={withBase("/novichku")}
               class="btn shadow-xs btn-neutral btn-sm sm:btn-md"
             >
               Что нужно знать новичку
@@ -97,7 +98,7 @@ const groupName = meeting.group.replace(/^[«\"]+|[»\"]+$/g, "")
 
           <div class="flex shrink-0 items-center">
             <a
-              href="/sobraniya"
+              href={withBase("/sobraniya")}
               class="btn shadow-xs btn-neutral btn-sm sm:btn-md"
             >
               <span>Смотреть остальные дни</span>
@@ -170,7 +171,7 @@ const groupName = meeting.group.replace(/^[«\"]+|[»\"]+$/g, "")
 
           <div class="flex shrink-0 items-center">
             <a
-              href="/rodstvennikam"
+              href={withBase("/rodstvennikam")}
               class="btn shadow-xs btn-neutral btn-sm sm:btn-md"
             >
               <span>Подробнее о группах Ал-Анон</span>

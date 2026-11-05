@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../../utils/paths"
 import Layout from "../../layouts/Layout.astro"
 import { getCollection, render } from "astro:content"
 import { Icon } from "astro-icon/components"
@@ -32,9 +33,9 @@ function formatDate(date: Date): string {
   <article class="space-y-6">
     <nav class="text-xs text-base-content/60" aria-label="Хлебные крошки">
       <ol class="flex items-center gap-2">
-        <li><a href="/" class="link link-hover">Главная</a></li>
+        <li><a href={withBase("/")} class="link link-hover">Главная</a></li>
         <li>/</li>
-        <li><a href="/novosti" class="link link-hover">Новости</a></li>
+        <li><a href={withBase("/novosti")} class="link link-hover">Новости</a></li>
         <li>/</li>
         <li class="line-clamp-1 font-medium text-base-content">
           {post.data.title}
@@ -61,7 +62,7 @@ function formatDate(date: Date): string {
       post.data.image && (
         <div class="overflow-hidden rounded-xl border border-base-300">
           <img
-            src={post.data.image}
+            src={withBase(post.data.image)}
             alt={post.data.title}
             class="max-h-96 w-full object-cover"
           />
@@ -77,13 +78,13 @@ function formatDate(date: Date): string {
       class="flex items-center justify-between border-t border-base-300 pt-6"
     >
       <a
-        href="/novosti"
+        href={withBase("/novosti")}
         class="btn inline-flex items-center gap-1.5 btn-ghost text-primary btn-sm"
       >
         <Icon name="lucide:arrow-left" class="h-4 w-4" />
         <span>Ко всем новостям</span>
       </a>
-      <a href="/sobraniya" class="btn btn-neutral btn-sm">
+      <a href={withBase("/sobraniya")} class="btn btn-neutral btn-sm">
         Расписание собраний
       </a>
     </div>

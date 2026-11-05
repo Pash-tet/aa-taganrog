@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../utils/paths"
 import { Icon } from "astro-icon/components"
 import { getCollection } from "astro:content"
 import { getContacts } from "../utils/contacts"
@@ -113,7 +114,7 @@ function formatDate(date: Date): string {
               {newsItems.map((item) => (
                 <article class="py-3 text-center first:pt-2 last:pb-1">
                   <a
-                    href={`/novosti/${item.id}`}
+                    href={withBase(`/novosti/${item.id}`)}
                     class="block link text-xs leading-snug font-medium text-base-content link-hover hover:text-primary"
                   >
                     {item.data.title}
@@ -127,7 +128,7 @@ function formatDate(date: Date): string {
 
             <div class="border-t border-base-300/60 pt-3 text-center">
               <a
-                href="/novosti"
+                href={withBase("/novosti")}
                 class="[11px]semiboldblock link text-xs leading-snug font-medium text-base-content link-hover hover:text-primary"
               >
                 Все новости →

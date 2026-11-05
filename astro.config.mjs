@@ -4,11 +4,12 @@ import tailwindcss from "@tailwindcss/vite"
 import icon from "astro-icon"
 import { writeFile } from "node:fs/promises"
 
-const site = "https://aataganrog.ru"
+const site = "https://pash-tet.github.io/aa-taganrog/"
 
 // https://astro.build/config
 export default defineConfig({
   site,
+  base: "/aa-taganrog",
   trailingSlash: "always",
   integrations: [
     icon(),
@@ -30,7 +31,7 @@ export default defineConfig({
           )
           await writeFile(
             new URL("robots.txt", dir),
-            `User-agent: *\nAllow: /\n\nSitemap: ${site}/sitemap.xml\n`
+            `User-agent: *\nAllow: /\n\nSitemap: ${site}sitemap.xml\n`
           )
         }
       }

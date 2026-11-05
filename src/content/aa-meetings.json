@@ -23,9 +23,9 @@
     "timeStart": "18:00",
     "timeEnd": "19:00",
     "address": "пер. Гоголевский, 4а",
+    "office": "павильон 37/3",
     "type": "Закрытое",
-    "lastVerified": "2026-11-05",
-    "office": "павильон 37"
+    "lastVerified": "2026-11-05"
   },
   {
     "id": "wed-nash-put-1800",
@@ -51,9 +51,9 @@
     "timeStart": "18:00",
     "timeEnd": "19:00",
     "address": "пер. Гоголевский, 4а",
+    "office": "павильон 37/3",
     "type": "Закрытое",
-    "lastVerified": "2026-11-05",
-    "office": "павильон 37"
+    "lastVerified": "2026-11-05"
   },
   {
     "id": "fri-svoboda-1800",
@@ -95,9 +95,9 @@
     "timeStart": "17:00",
     "timeEnd": "18:00",
     "address": "пер. Гоголевский, 4а",
+    "office": "павильон 37/3",
     "type": "Закрытое",
     "typeNote": "Последнее воскресенье месяца — открытое собрание",
-    "lastVerified": "2026-11-05",
-    "office": "павильон 37"
+    "lastVerified": "2026-11-05"
   }
 ]

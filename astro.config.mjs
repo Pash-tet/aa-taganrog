@@ -4,12 +4,11 @@ import tailwindcss from "@tailwindcss/vite"
 import icon from "astro-icon"
 import { writeFile } from "node:fs/promises"
 
-const site = "https://pash-tet.github.io/aa-taganrog/"
+const site = "https://aataganrog.ru/"
 
 // https://astro.build/config
 export default defineConfig({
   site,
-  base: "/aa-taganrog",
   trailingSlash: "always",
   integrations: [
     icon(),

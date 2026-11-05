@@ -17,7 +17,7 @@ assert.equal(
 )
 assert.equal(new Set(urls).size, urls.length, "В карте сайта есть дубликаты")
 assert.ok(
-  robots.includes("Sitemap: https://pash-tet.github.io/aa-taganrog/sitemap.xml")
+  robots.includes("Sitemap: https://aataganrog.ru/sitemap.xml")
 )
 assert.doesNotMatch(robots, /Disallow:\s*\//)
 const titles = new Set()
@@ -27,14 +27,14 @@ for (const file of files) {
   for (const [, path] of html.matchAll(/(?:href|src)="(\/[^"#?]*)/g)) {
     if (path.startsWith("//")) continue
     assert.ok(
-      path.startsWith("/aa-taganrog/"),
+      !path.startsWith("/aa-taganrog/"),
       `Неверный путь в ${file}: ${path}`
     )
-    await access(new URL(path.slice("/aa-taganrog/".length), root))
+    await access(new URL(path.slice(1), root))
   }
   const expected = new URL(
     file.replace(/index\.html$/, ""),
-    "https://pash-tet.github.io/aa-taganrog/"
+    "https://aataganrog.ru/"
   ).href
   const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1]
   assert.equal(canonical, expected, file)
@@ -60,8 +60,8 @@ for (const file of files) {
   const image = new URL(
     html.match(/property="og:image" content="([^"]+)"/)?.[1]
   )
-  if (image.origin === "https://pash-tet.github.io")
-    await access(new URL(image.pathname.replace(/^\/aa-taganrog\//, ""), root))
+  if (image.origin === "https://aataganrog.ru")
+    await access(new URL(image.pathname.slice(1), root))
   for (const match of html.matchAll(
     /type="application\/ld\+json">(.*?)<\/script>/gs
   ))

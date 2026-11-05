@@ -1,6 +1,6 @@
 media:
   input: public/images
-  output: /aa-taganrog/images
+  output: /images
 
 content:
   - name: contacts

@@ -14,7 +14,8 @@ content:
         required: true
       - name: phones
         label: Телефоны
-        type: list
+        type: object
+        list: true
         fields:
           - name: number
             label: Номер для отображения (напр. 8 (952) 580 54 00)

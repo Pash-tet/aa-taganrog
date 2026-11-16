@@ -1,0 +1,241 @@
+---
+import { withBase } from "../utils/paths"
+import Layout from "../layouts/Layout.astro"
+import { Icon } from "astro-icon/components"
+import { getPrimaryPhone } from "../utils/contacts"
+
+const primaryPhone = getPrimaryPhone()
+
+const principles = [
+  {
+    icon: "lucide:users",
+    title: "Около двух миллионов людей по всему миру нашли трезвость в АА",
+    text: "При этом участники признают, что программа подходит не всем. Некоторым людям может также понадобиться профессиональное консультирование или медицинская помощь."
+  },
+  {
+    icon: "lucide:shield-check",
+    title: "АА занимается только личным выздоровлением",
+    text: "Сообщество не ставит медицинских диагнозов, не проводит исследований и не ведёт учёт или истории болезни участников."
+  },
+  {
+    icon: "lucide:handshake",
+    title: "АА придерживается политики сотрудничества",
+    text: "Но не вступает в союзы и не присоединяется к другим организациям, занимающимся проблемой алкоголизма."
+  }
+]
+---
+
+<Layout
+  title="Для профессионалов — Анонимные Алкоголики Таганрога"
+  description="Информация о сотрудничестве Анонимных Алкоголиков со специалистами, врачами, наркологами и психологами в Таганроге."
+>
+  <article class="space-y-8">
+    <nav class="text-xs text-base-content/60" aria-label="Хлебные крошки">
+      <ol class="flex items-center gap-2">
+        <li><a href={withBase("/")} class="link link-hover">Главная</a></li>
+        <li>/</li>
+        <li class="font-medium text-base-content">Профессионалам</li>
+      </ol>
+    </nav>
+
+    <header class="space-y-4">
+      <div
+        class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary"
+      >
+        <Icon name="lucide:briefcase" class="h-4 w-4" />
+        <span>Сотрудничество с профессионалами</span>
+      </div>
+      <h1
+        class="text-2xl font-bold tracking-tight text-base-content sm:text-3xl lg:text-4xl"
+      >
+        АА может поддержать профессионалов
+      </h1>
+      <p class="text-base leading-relaxed text-base-content/85 sm:text-lg">
+        Специалисты, работающие с алкоголиками, разделяют с АА общую цель:
+        помочь алкоголикам бросить пить. Члены АА готовы проводить встречи АА
+        или предоставлять информацию об АА по запросу.
+      </p>
+    </header>
+
+    <!-- Meetings attendance -->
+    <section class="card border border-base-300 bg-base-200 shadow-xs">
+      <div
+        class="card-body space-y-4 p-6 text-sm leading-relaxed text-base-content/85 sm:p-8 sm:text-base"
+      >
+        <div class="flex items-center gap-2">
+          <div class="badge text-xs font-semibold badge-primary">
+            Посещение собраний
+          </div>
+          <h2 class="text-lg font-bold text-base-content sm:text-xl">
+            Как проходит участие в группах
+          </h2>
+        </div>
+        <p>
+          Люди, которые считают, что у них есть проблемы с алкоголем, могут
+          посещать любые собрания АА. Они могут просто сидеть и слушать, чтобы
+          узнать больше о выздоровлении, или, если захотят, поделиться своей
+          историей. Решать им самим. Мы рады каждому. Участие в собраниях
+          бесплатное.
+        </p>
+        <p>
+          Профессионалы, работающие с алкоголиками, могут присутствовать на <strong
+            class="text-base-content font-bold">открытых собраниях АА</strong
+          >, чтобы познакомиться с тем, как проходит программа и что происходит
+          на собраниях.
+        </p>
+        <div class="pt-2">
+          <a
+            href={withBase("/sobraniya/")}
+            class="btn btn-primary btn-sm sm:btn-md"
+          >
+            Посмотреть расписание открытых собраний в Таганроге
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="space-y-4">
+      <div class="border-b border-base-300 pb-2">
+        <h2
+          class="text-xl font-bold tracking-tight text-base-content sm:text-2xl"
+        >
+          Краткий обзор АА
+        </h2>
+        <p class="mt-1 text-xs text-base-content/70 sm:text-sm">
+          Основные принципы и границы деятельности нашего Сообщества:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        {
+          principles.map((item) => (
+            <div class="card border border-base-300 bg-base-200 shadow-xs">
+              <div class="card-body space-y-3 p-5">
+                <div class="flex items-center gap-2 text-primary">
+                  <Icon name={item.icon} class="h-5 w-5 shrink-0" />
+                  <h3 class="text-sm font-bold text-base-content sm:text-base">
+                    {item.title}
+                  </h3>
+                </div>
+                <p class="text-xs leading-relaxed text-base-content/80 sm:text-sm">
+                  {item.text}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- What to expect -->
+    <section class="card border border-base-300 bg-base-200 shadow-xs">
+      <div
+        class="card-body space-y-4 p-6 text-sm leading-relaxed text-base-content/85 sm:p-8 sm:text-base"
+      >
+        <h2 class="text-lg font-bold text-base-content sm:text-xl">
+          Чего можно ожидать от АА
+        </h2>
+        <ul class="space-y-3 text-sm text-base-content/85 sm:text-base">
+          <li class="flex items-start gap-3">
+            <Icon
+              name="lucide:check"
+              class="mt-1 h-5 w-5 shrink-0 text-success"
+            />
+            <span>
+              Члены АА готовы помочь любому, кто хочет бросить пить и оставаться
+              трезвым.
+            </span>
+          </li>
+          <li class="flex items-start gap-3">
+            <Icon
+              name="lucide:check"
+              class="mt-1 h-5 w-5 shrink-0 text-success"
+            />
+            <span>
+              Местные группы АА часто могут подсказать, где получить стационарную
+              помощь при алкоголизме. Однако АА не связано ни с одним
+              медицинским или реабилитационным учреждением.
+            </span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Cooperation & Contacts -->
+    <section
+      class="rounded-box border border-base-300 bg-base-200/50 p-6 space-y-4"
+    >
+      <div class="space-y-1">
+        <h2 class="text-lg font-bold text-base-content sm:text-xl">
+          Связь и сотрудничество
+        </h2>
+        <p class="text-xs text-base-content/75 sm:text-sm">
+          Если вы хотите задать вопросы, пригласить представителей АА для
+          информационной беседы или получить литературу:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div class="card border border-base-300 bg-base-100 p-5 shadow-2xs">
+          <h3
+            class="text-xs font-bold tracking-wider text-primary uppercase"
+          >
+            Сообщество АА в Таганроге
+          </h3>
+          <div class="mt-3 space-y-2 text-sm text-base-content/85">
+            <div>
+              <span class="text-base-content/70">Телефон доверия:</span>{" "}
+              <a
+                href={`tel:${primaryPhone.tel}`}
+                class="font-bold link text-primary link-hover"
+              >
+                {primaryPhone.number}
+              </a>
+            </div>
+            <div>
+              <span class="text-base-content/70">Email:</span>{" "}
+              <a
+                href="mailto:aataganrog@mail.ru"
+                class="font-medium link text-primary link-hover"
+              >
+                aataganrog@mail.ru
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card border border-base-300 bg-base-100 p-5 shadow-2xs">
+          <h3
+            class="text-xs font-bold tracking-wider text-primary uppercase"
+          >
+            Комитет по информированию общественности (КИО)
+          </h3>
+          <div class="mt-3 space-y-2 text-sm text-base-content/85">
+            <div>
+              <span class="text-base-content/70">Email:</span>{" "}
+              <a
+                href="mailto:kio@rsoaa.ru"
+                class="font-medium link text-primary link-hover"
+              >
+                kio@rsoaa.ru
+              </a>
+            </div>
+            <div>
+              <span class="text-base-content/70">Раздел на сайте АА России:</span>{" "}
+              <a
+                href="https://aarussia.ru/professional"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex link items-center gap-1 font-medium text-primary link-hover"
+              >
+                <span>aarussia.ru/professional</span>
+                <Icon name="lucide:external-link" class="h-3.5 w-3.5 opacity-70" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </article>
+</Layout>

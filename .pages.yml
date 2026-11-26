@@ -57,6 +57,52 @@ content:
         label: Текст новости (Rich Text)
         type: rich-text
 
+  - name: sponsorship
+    label: Наставничество
+    type: file
+    path: src/content/sponsorship.md
+    format: yaml-frontmatter
+    fields:
+      - name: title
+        label: Заголовок
+        type: string
+        required: true
+      - name: body
+        label: Текст страницы
+        type: rich-text
+        required: true
+      - name: attribution
+        label: Подпись об источнике текста
+        type: text
+      - name: contactsIntro
+        label: Вступление к списку наставников
+        type: text
+      - name: mentors
+        label: Контакты наставников
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{name}"
+        fields:
+          - name: name
+            label: Имя и инициал
+            type: string
+            required: true
+          - name: soberSince
+            label: Дата начала трезвости
+            type: date
+            required: true
+            default: ""
+            options:
+              format: yyyy-MM-dd
+          - name: phone
+            label: Телефон
+            description: Введите номер с +7 или 8 без пробелов и скобок.
+            type: string
+            required: true
+            pattern: '^(\+7|8)[0-9]{10}$'
+
   - name: aa-meetings
     label: Расписание АА
     type: file

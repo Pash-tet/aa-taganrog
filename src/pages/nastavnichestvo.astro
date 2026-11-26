@@ -1,0 +1,143 @@
+---
+import { Icon } from "astro-icon/components"
+import { Content, frontmatter } from "../content/sponsorship.md"
+import Layout from "../layouts/Layout.astro"
+import { withBase } from "../utils/paths"
+
+interface MentorContact {
+  name: string
+  soberSince: string | Date
+  phone: string
+}
+
+const mentors: MentorContact[] = frontmatter.mentors ?? []
+const dateFormatter = new Intl.DateTimeFormat("ru-RU", {
+  day: "2-digit",
+  month: "2-digit",
+  year: "numeric",
+  timeZone: "UTC"
+})
+---
+
+<Layout
+  title="Наставничество — Анонимные Алкоголики Таганрога"
+  description="Что такое наставничество в АА, как попросить о поддержке и как связаться с наставниками в Таганроге."
+>
+  <article class="space-y-8">
+    <nav class="text-xs text-base-content/60" aria-label="Хлебные крошки">
+      <ol class="flex items-center gap-2">
+        <li><a href={withBase("/")} class="link link-hover">Главная</a></li>
+        <li aria-hidden="true">/</li>
+        <li class="font-medium text-base-content" aria-current="page">
+          Наставничество
+        </li>
+      </ol>
+    </nav>
+
+    <header class="space-y-4">
+      <div
+        class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary"
+      >
+        <Icon
+          name="lucide:heart-handshake"
+          class="h-4 w-4 shrink-0"
+          aria-hidden="true"
+        />
+        <span>Поддержка на пути к трезвости</span>
+      </div>
+      <h1
+        class="text-2xl font-bold tracking-tight text-base-content sm:text-3xl lg:text-4xl"
+      >
+        {frontmatter.title}
+      </h1>
+      {
+        mentors.length > 0 && (
+          <a href="#mentor-contacts" class="btn btn-primary">
+            Контакты наставников
+            <Icon name="lucide:arrow-down" class="size-4" aria-hidden="true" />
+          </a>
+        )
+      }
+    </header>
+
+    <div class="card border border-base-300 bg-base-200 shadow-xs">
+      <div class="card-body p-4 sm:p-8">
+        <div
+          class="max-w-3xl space-y-4 text-base leading-relaxed text-base-content/85 [&>h2]:mt-8 [&>h2]:border-t [&>h2]:border-base-300 [&>h2]:pt-6 [&>h2]:text-lg [&>h2]:font-bold [&>h2]:text-base-content sm:[&>h2]:text-xl [&>h2:first-child]:mt-0 [&>h2:first-child]:border-0 [&>h2:first-child]:pt-0"
+        >
+          <Content />
+        </div>
+        {
+          frontmatter.attribution && (
+            <p class="mt-4 max-w-3xl border-t border-base-300 pt-4 text-sm text-base-content/75">
+              {frontmatter.attribution}
+            </p>
+          )
+        }
+      </div>
+    </div>
+
+    {
+      mentors.length > 0 && (
+        <section
+          id="mentor-contacts"
+          aria-labelledby="mentor-contacts-title"
+          class="scroll-mt-44 space-y-4 xl:scroll-mt-28"
+          tabindex="-1"
+        >
+          <div class="space-y-2">
+            <h2
+              id="mentor-contacts-title"
+              class="text-xl font-bold tracking-tight sm:text-2xl"
+            >
+              Контакты наставников
+            </h2>
+            {frontmatter.contactsIntro && (
+              <p class="card border border-base-300/80 bg-base-200/50 p-5 text-xs text-base-content/80 sm:text-sm">
+                {frontmatter.contactsIntro}
+              </p>
+            )}
+          </div>
+          <ul class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            {mentors.map(({ name, soberSince, phone }) => {
+              const date = new Date(soberSince)
+              const tel = phone.replace(/^8/, "+7")
+              const number = tel.replace(
+                /^\+7(\d{3})(\d{3})(\d{2})(\d{2})$/,
+                "+7 ($1) $2-$3-$4"
+              )
+
+              return (
+                <li class="card border border-base-300 bg-base-200 shadow-xs">
+                  <div class="card-body gap-1 p-4 sm:p-5">
+                    <h3 class="text-lg font-bold">{name}</h3>
+                    <p class="text-sm text-base-content/80">
+                      В трезвости с{" "}
+                      <time datetime={date.toISOString().slice(0, 10)}>
+                        {dateFormatter.format(date)}
+                      </time>
+                    </p>
+                    <div class="card-actions pt-2">
+                      <a
+                        href={`tel:${tel}`}
+                        class="btn min-h-11 btn-outline btn-primary"
+                        aria-label={`Позвонить по номеру ${number} (${name})`}
+                      >
+                        <Icon
+                          name="lucide:phone"
+                          class="size-4"
+                          aria-hidden="true"
+                        />
+                        {number}
+                      </a>
+                    </div>
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
+        </section>
+      )
+    }
+  </article>
+</Layout>
